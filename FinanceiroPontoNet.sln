@@ -2,13 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPontoNet.Application", "FinanceiroPontoNet.Application\FinanceiroPontoNet.Application.csproj", "{F6D5BAC8-E9DF-63E9-F757-01B857547916}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPontoNet.Application", "src\FinanceiroPontoNet.Application\FinanceiroPontoNet.Application.csproj", "{F6D5BAC8-E9DF-63E9-F757-01B857547916}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPontoNet.Domain", "FinanceiroPontoNet.Domain\FinanceiroPontoNet.Domain.csproj", "{1FB833CB-1B3A-F9EF-EC5E-CEF13D97E9CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPontoNet.Domain", "src\FinanceiroPontoNet.Domain\FinanceiroPontoNet.Domain.csproj", "{1FB833CB-1B3A-F9EF-EC5E-CEF13D97E9CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPontoNet.Infrastructure", "FinanceiroPontoNet.Infrastructure\FinanceiroPontoNet.Infrastructure.csproj", "{0B80086C-757A-459D-DAE7-CE7EC5D615F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPontoNet.Infrastructure", "src\FinanceiroPontoNet.Infrastructure\FinanceiroPontoNet.Infrastructure.csproj", "{0B80086C-757A-459D-DAE7-CE7EC5D615F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPontoNet.Web", "FinanceiroPontoNet.Web\FinanceiroPontoNet.Web.csproj", "{EB9DCDB2-9FF9-4610-025E-BF673F2C9F2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPontoNet.Web", "src\FinanceiroPontoNet.Web\FinanceiroPontoNet.Web.csproj", "{EB9DCDB2-9FF9-4610-025E-BF673F2C9F2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
