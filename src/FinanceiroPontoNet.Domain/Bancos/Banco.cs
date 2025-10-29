@@ -1,6 +1,6 @@
-using FinanceiroPontonet.Domain.Shared;
+using FinanceiroPontoNet.Domain.Shared;
 
-namespace FinanceiroPontonet.Domain.Bancos
+namespace FinanceiroPontoNet.Domain.Bancos
 {
     public class Banco : FullAuditedEntity, ISoftDelete
     {

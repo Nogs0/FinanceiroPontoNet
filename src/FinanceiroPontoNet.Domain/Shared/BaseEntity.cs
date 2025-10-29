@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FinanceiroPontonet.Domain.Shared
+namespace FinanceiroPontoNet.Domain.Shared
 {
     public class BaseEntity
     {

@@ -1,4 +1,4 @@
-namespace FinanceiroPontonet.Domain.Shared
+namespace FinanceiroPontoNet.Domain.Shared
 {
     public class FullAuditedEntity : BaseEntity
     {

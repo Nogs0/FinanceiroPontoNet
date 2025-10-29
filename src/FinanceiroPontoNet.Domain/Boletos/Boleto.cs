@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using FinanceiroPontonet.Domain.Bancos;
-using FinanceiroPontonet.Domain.Shared;
+using FinanceiroPontoNet.Domain.Bancos;
+using FinanceiroPontoNet.Domain.Shared;
 
-namespace FinanceiroPontonet.Domain.Boletos
+namespace FinanceiroPontoNet.Domain.Boletos
 {
     public class Boleto : FullAuditedEntity, ISoftDelete
     {

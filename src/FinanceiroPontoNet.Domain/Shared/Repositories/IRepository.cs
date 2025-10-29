@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using FinanceiroPontonet.Domain.Shared;
+using FinanceiroPontoNet.Domain.Shared;
 
 namespace FinanceiroPontoNet.Domain.Shared.Repositories
 {
