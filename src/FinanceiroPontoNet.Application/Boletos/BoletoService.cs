@@ -22,6 +22,7 @@ namespace FinanceiroPontoNet.Application.Boletos
                 dto.NomeDoPagador,
                 dto.DocumentoDoPagador,
                 dto.NomeDoBeneficiario,
+                dto.DocumentoDoBeneficiario,
                 dto.Valor,
                 dto.DataDeVencimento,
                 dto.BancoId
@@ -54,11 +55,12 @@ namespace FinanceiroPontoNet.Application.Boletos
 
             entity.Atualizar(
                 dto.NomeDoPagador,
-                dto.NomeDoBeneficiario,
                 dto.DocumentoDoPagador,
+                dto.NomeDoBeneficiario,
+                dto.DocumentoDoBeneficiario,
+                dto.Valor,
                 dto.DataDeVencimento,
-                dto.BancoId,
-                dto.Valor
+                dto.BancoId
             );
 
             _repository.Update(entity);

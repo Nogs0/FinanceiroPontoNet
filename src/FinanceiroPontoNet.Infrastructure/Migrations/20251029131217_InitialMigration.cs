@@ -14,8 +14,8 @@ namespace FinanceiroPontoNet.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Nome = table.Column<string>(type: "text", nullable: false),
-                    Codigo = table.Column<string>(type: "text", nullable: false),
+                    Nome = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    Codigo = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
                     PercentualDeJuros = table.Column<decimal>(type: "numeric", nullable: false),
                     DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -31,9 +31,10 @@ namespace FinanceiroPontoNet.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    NomeDoPagador = table.Column<string>(type: "text", nullable: false),
-                    DocumentoDoPagador = table.Column<string>(type: "text", nullable: false),
-                    NomeDoBeneficiario = table.Column<string>(type: "text", nullable: false),
+                    NomeDoPagador = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    DocumentoDoPagador = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
+                    NomeDoBeneficiario = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    DocumentoDoBeneficiario = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
                     Valor = table.Column<decimal>(type: "numeric", nullable: false),
                     DataDeVencimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     BancoId = table.Column<Guid>(type: "uuid", nullable: false),
@@ -51,6 +52,12 @@ namespace FinanceiroPontoNet.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bancos_Codigo",
+                table: "Bancos",
+                column: "Codigo",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Boletos_BancoId",
