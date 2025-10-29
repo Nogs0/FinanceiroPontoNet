@@ -1,11 +1,11 @@
 namespace FinanceiroPontoNet.Application.Shared
 {
-    public interface IServiceCrud<TEntityDto>
+    public interface IServiceCrud<TEntityDto, TCreateEntityDto>
     {
-        Task<TEntityDto> CreateAsync(TEntityDto dto);
+        Task<TEntityDto> CreateAsync(TCreateEntityDto dto);
         Task<TEntityDto> GetAsync(Guid id);
         Task<List<TEntityDto>> GetAllAsync();
-        Task<TEntityDto> UpdateAsync(TEntityDto dto);
+        Task UpdateAsync(TEntityDto dto);
         Task DeleteAsync(Guid id);
     }
 }

@@ -12,6 +12,8 @@ namespace FinanceiroPontoNet.Application.Boletos.Dtos
         public DateTime DataDeVencimento { get; set; }
         public Guid BancoId { get; set; }
 
+        public BoletoDto() { }
+
         public BoletoDto(Boleto entity)
         {
             Id = entity.Id;

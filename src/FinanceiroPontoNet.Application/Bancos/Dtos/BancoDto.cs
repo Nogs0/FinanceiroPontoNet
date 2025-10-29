@@ -10,6 +10,8 @@ namespace FinanceiroPontoNet.Application.Bancos.Dtos
         public string Codigo { get; set; } = "";
         public decimal PercentualDeJuros { get; set; }
 
+        public BancoDto() { }
+
         public BancoDto(Banco entity)
         {
             Id = entity.Id;

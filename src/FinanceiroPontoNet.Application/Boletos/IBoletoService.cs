@@ -3,5 +3,5 @@ using FinanceiroPontoNet.Application.Shared;
 
 namespace FinanceiroPontoNet.Application.Boletos
 {
-    public interface IBoletoService : IServiceCrud<BoletoDto> { }
+    public interface IBoletoService : IServiceCrud<BoletoDto, CreateBoletoDto> { }
 }
