@@ -6,7 +6,7 @@ namespace FinanceiroPontoNet.Domain.Shared.Utils
     {
         public static bool Validate(string document)
         {
-            return ValidateCpf(document) && ValidateCnpj(document);
+            return ValidateCpf(document) || ValidateCnpj(document);
         }
 
         public static string RemoveFormat(string document)
