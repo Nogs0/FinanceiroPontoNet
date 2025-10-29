@@ -2,11 +2,12 @@ using System.Linq.Expressions;
 using FinanceiroPontoNet.Domain.Bancos;
 using FinanceiroPontoNet.Domain.Boletos;
 using FinanceiroPontoNet.Domain.Shared;
+using FinanceiroPontoNet.Domain.Shared.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinanceiroPontoNet.Infrastructure.Persistence
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : DbContext, IUnitOfWork
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
@@ -29,7 +30,7 @@ namespace FinanceiroPontoNet.Infrastructure.Persistence
             foreach (var entry in deletedEntities)
             {
                 var entitySoftDelete = (ISoftDelete)entry.Entity;
-                entitySoftDelete.DeletedAt = DateTime.Now;
+                entitySoftDelete.DeletedAt = DateTime.UtcNow;
                 entry.State = EntityState.Modified;
             }
         }
@@ -68,6 +69,8 @@ namespace FinanceiroPontoNet.Infrastructure.Persistence
                     modelBuilder.Entity(entityType.ClrType).HasQueryFilter(finalLambda);
                 }
             }
+
+            modelBuilder.Entity<Banco>().HasIndex(b => b.Codigo).IsUnique();
         }
     }
 }

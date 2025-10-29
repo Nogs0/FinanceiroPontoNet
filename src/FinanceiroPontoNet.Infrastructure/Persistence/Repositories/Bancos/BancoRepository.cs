@@ -1,5 +1,6 @@
 using FinanceiroPontoNet.Domain.Bancos;
-using FinanceiroPontoNet.Domain.Bancos;
+using FinanceiroPontoNet.Domain.Shared.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinanceiroPontoNet.Infrastructure.Persistence.Repositories
 {
@@ -7,5 +8,12 @@ namespace FinanceiroPontoNet.Infrastructure.Persistence.Repositories
     {
         public BancoRepository(AppDbContext context)
             : base(context) { }
+
+        public async Task<Banco?> GetByCodigoAsync(string codigo)
+        {
+            var banco = await _dbSet.FirstOrDefaultAsync(x => x.Codigo == codigo);
+
+            return banco;
+        }
     }
 }
