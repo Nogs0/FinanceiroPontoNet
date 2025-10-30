@@ -9,19 +9,19 @@ namespace FinanceiroPontoNet.Domain.Boletos
     {
         [MaxLength(256)]
         [Required]
-        public string NomeDoPagador { get; set; } = "";
+        public string NomeDoPagador { get; set; }
 
         [MaxLength(14)]
         [Required]
-        public string DocumentoDoPagador { get; set; } = "";
+        public string DocumentoDoPagador { get; set; }
 
         [MaxLength(256)]
         [Required]
-        public string NomeDoBeneficiario { get; set; } = "";
+        public string NomeDoBeneficiario { get; set; }
 
         [MaxLength(14)]
         [Required]
-        public string DocumentoDoBeneficiario { get; set; } = "";
+        public string DocumentoDoBeneficiario { get; set; }
 
         public decimal Valor { get; set; }
         public DateTime DataDeVencimento { get; set; }
@@ -52,7 +52,7 @@ namespace FinanceiroPontoNet.Domain.Boletos
             DocumentoDoPagador = documentoDoPagador;
 
             if (string.IsNullOrEmpty(nomeDoBeneficiario))
-                throw new ArgumentException("O nome do beneficiário é obrigatório");
+                throw new ArgumentException("O nome do beneficiário é obrigatório.");
             NomeDoBeneficiario = nomeDoBeneficiario;
 
             documentoDoBeneficiario = CpfCpnjUtils.RemoveFormat(documentoDoBeneficiario);
@@ -88,7 +88,7 @@ namespace FinanceiroPontoNet.Domain.Boletos
             DocumentoDoPagador = documentoDoPagador;
 
             if (string.IsNullOrEmpty(nomeDoBeneficiario))
-                throw new ArgumentException("O nome do beneficiário é obrigatório");
+                throw new ArgumentException("O nome do beneficiário é obrigatório.");
             NomeDoBeneficiario = nomeDoBeneficiario;
 
             documentoDoBeneficiario = CpfCpnjUtils.RemoveFormat(documentoDoBeneficiario);
