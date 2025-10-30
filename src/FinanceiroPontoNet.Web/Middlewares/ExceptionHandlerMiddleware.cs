@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text.Json;
+using FinanceiroPontoNet.Domain.Shared.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceiroPontoNet.Web.Middlewares
@@ -29,7 +30,7 @@ namespace FinanceiroPontoNet.Web.Middlewares
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Unhandled exception: {Message}", ex.Message);
+                _logger.LogError(ex, "Exception: {Message}", ex.Message);
                 httpContext.Response.ContentType = "application/json";
                 var responseBody = new
                 {
@@ -41,6 +42,10 @@ namespace FinanceiroPontoNet.Web.Middlewares
                     case ArgumentException ae:
                         httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                         responseBody = new { message = ae.Message, details = "Dados incorretos." };
+                        break;
+                    case NotFoundException nf:
+                        httpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                        responseBody = new { message = nf.Message, details = "Busca incorreta." };
                         break;
                     default:
                         httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

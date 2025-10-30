@@ -34,15 +34,10 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+app.UseSwagger();
+app.UseSwaggerUI();
 var isRunningInContainer = Environment.GetEnvironmentVariable("IS_RUNNING_IN_CONTAINER");
-
+Console.WriteLine("RuningInContainer: ", isRunningInContainer);
 if (bool.TryParse(isRunningInContainer, out var isContainer) && isContainer)
 {
     using (var scope = app.Services.CreateScope())
@@ -63,7 +58,6 @@ if (bool.TryParse(isRunningInContainer, out var isContainer) && isContainer)
     }
 }
 
-app.UseHttpsRedirection();
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseAuthorization();
 
