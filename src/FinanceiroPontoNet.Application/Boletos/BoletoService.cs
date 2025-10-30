@@ -1,4 +1,6 @@
+using FinanceiroPontoNet.Application.Bancos;
 using FinanceiroPontoNet.Application.Boletos.Dtos;
+using FinanceiroPontoNet.Domain.Bancos;
 using FinanceiroPontoNet.Domain.Boletos;
 using FinanceiroPontoNet.Domain.Shared.Exceptions;
 using FinanceiroPontoNet.Domain.Shared.UnitOfWork;
@@ -8,11 +10,17 @@ namespace FinanceiroPontoNet.Application.Boletos
     public class BoletoService : IBoletoService
     {
         private readonly IBoletoRepository _repository;
+        private readonly IBancoService _bancoService;
         private readonly IUnitOfWork _uow;
 
-        public BoletoService(IBoletoRepository repository, IUnitOfWork uow)
+        public BoletoService(
+            IBoletoRepository repository,
+            IBancoService bancoService,
+            IUnitOfWork uow
+        )
         {
             _repository = repository;
+            _bancoService = bancoService;
             _uow = uow;
         }
 
@@ -43,6 +51,12 @@ namespace FinanceiroPontoNet.Application.Boletos
         {
             var entity =
                 await _repository.GetByIdAsync(id) ?? throw new NotFoundException("Boleto", id);
+
+            if (entity.DataDeVencimento.Date < DateTime.Now.Date)
+            {
+                var banco = await _bancoService.GetAsync(entity.BancoId);
+                entity.AdicionarJurosDeVencimento(banco.PercentualDeJuros);
+            }
 
             return new BoletoDto(entity);
         }

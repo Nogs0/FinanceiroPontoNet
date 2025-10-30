@@ -104,5 +104,10 @@ namespace FinanceiroPontoNet.Domain.Boletos
 
             Valor = valor;
         }
+
+        public void AdicionarJurosDeVencimento(decimal percentualDeJuros)
+        {
+            Valor += (Valor * percentualDeJuros) / 100;
+        }
     }
 }
