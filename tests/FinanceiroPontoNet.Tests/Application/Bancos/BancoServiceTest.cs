@@ -64,6 +64,34 @@ namespace FinanceiroPontoNet.Tests.Application.Bancos
             Assert.Equal(expectedMessage, exception.Message);
         }
 
+        [Fact(
+            DisplayName = "Create when codigo has already been used empty should throw ArgumentException"
+        )]
+        public async Task Create_WhenCodigoHasAlreadyBeenUsed_ShouldThrowArgumentException()
+        {
+            //Arrange
+            var bancoWithCodigo = new Banco("Banco existente", "1", 5m);
+
+            var createDto = new CreateBancoDto()
+            {
+                Nome = "Banco 1",
+                Codigo = "1",
+                PercentualDeJuros = 0.1m,
+            };
+
+            _repositoryMock
+                .Setup(r => r.GetByCodigoAsync(createDto.Codigo))
+                .ReturnsAsync(bancoWithCodigo);
+            var expectedMessage = $"Código {createDto.Codigo} já utilizado.";
+
+            //Act & Assert
+            var exception = await Assert.ThrowsAsync<ArgumentException>(() =>
+                _service.CreateAsync(createDto)
+            );
+
+            Assert.Equal(expectedMessage, exception.Message);
+        }
+
         [Fact(DisplayName = "Create when código is empty should throw ArgumentException")]
         public async Task Create_WhenCodigoIsEmpty_ShouldThrowArgumentException()
         {

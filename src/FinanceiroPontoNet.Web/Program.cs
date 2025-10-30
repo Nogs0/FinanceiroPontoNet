@@ -69,4 +69,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapGet("/", () => Results.Redirect("/swagger/index.html", permanent: true))
+    .ExcludeFromDescription();
+
 app.Run();

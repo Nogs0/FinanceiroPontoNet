@@ -18,6 +18,7 @@ namespace FinanceiroPontoNet.Infrastructure.Persistence
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             SetIsDeletedOnDeletedEntities();
+            SetFullAuditedFieldsOnFullAuditedEntities();
             return base.SaveChangesAsync(cancellationToken);
         }
 
@@ -32,6 +33,26 @@ namespace FinanceiroPontoNet.Infrastructure.Persistence
                 var entitySoftDelete = (ISoftDelete)entry.Entity;
                 entitySoftDelete.DeletedAt = DateTime.UtcNow;
                 entry.State = EntityState.Modified;
+            }
+        }
+
+        private void SetFullAuditedFieldsOnFullAuditedEntities()
+        {
+            var entities = ChangeTracker.Entries().Where(e => e.Entity is FullAuditedEntity);
+
+            foreach (var entry in entities)
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    var fullAuditedEntity = (FullAuditedEntity)entry.Entity;
+                    fullAuditedEntity.CreatedAt = DateTime.UtcNow;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    var fullAuditedEntity = (FullAuditedEntity)entry.Entity;
+                    fullAuditedEntity.LastModifiedAt = DateTime.UtcNow;
+                }
             }
         }
 

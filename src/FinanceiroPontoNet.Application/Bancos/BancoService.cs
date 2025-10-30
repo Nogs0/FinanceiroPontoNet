@@ -20,7 +20,7 @@ namespace FinanceiroPontoNet.Application.Bancos
         {
             var codigoAlreadyUsed = await _repository.GetByCodigoAsync(dto.Codigo);
             if (codigoAlreadyUsed != null)
-                throw new ArgumentException("Código de banco já utilizado.");
+                throw new ArgumentException($"Código {dto.Codigo} já utilizado.");
 
             var banco = new Banco(dto.Nome, dto.Codigo, dto.PercentualDeJuros);
 
